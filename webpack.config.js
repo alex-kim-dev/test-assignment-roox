@@ -33,7 +33,7 @@ module.exports = {
     clean: true,
     hashDigestLength: 10,
     filename: 'js/[name].[contenthash].js',
-    publicPath: '/',
+    publicPath: isDev ? '/' : '/test-assignment-roox/',
   },
 
   devServer: {
