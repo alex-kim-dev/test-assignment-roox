@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import css from '~/App.module.css';
+import css from '~/App.module.scss';
 import Logo from '~/logo.svg';
 
 export const App = () => {
