@@ -5,9 +5,9 @@
 ## Requirements
 
 - [ ] recreate the suggested figma design
-- [ ] SPA with React 16
-- [ ] Typescript
-- [ ] SCSS
-- [ ] Webpack
+- [x] SPA with React 16
+- [x] Typescript
+- [x] SCSS
+- [x] Webpack
 - [ ] reusable components
 - [ ] use presentational and container components
