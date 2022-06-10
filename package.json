@@ -1,13 +1,13 @@
 {
-  "name": "webpack-react-template",
+  "name": "test-assignment-roox",
   "version": "1.0.0-alpha.0",
   "private": true,
-  "description": "Webpack 5 template for React Typescript projects.",
+  "description": "Solution of the Roox test assignment for a junior frontend developer",
   "license": "MIT",
-  "repository": "git@github.com:alex-kim-dev/webpack-react-template.git",
+  "repository": "git@github.com:alex-kim-dev/test-assignment-roox.git",
   "author": "Alex Kim (https://github.com/alex-kim-dev)",
-  "homepage": "https://alex-kim-dev.github.io/webpack-react-template#readme",
-  "bugs": "https://github.com/alex-kim-dev/webpack-react-template/issues",
+  "homepage": "https://alex-kim-dev.github.io/test-assignment-roox#readme",
+  "bugs": "https://github.com/alex-kim-dev/test-assignment-roox/issues",
   "scripts": {
     "analyze": "npm run build -- --analyze",
     "build": "cross-env NODE_ENV=production webpack",
