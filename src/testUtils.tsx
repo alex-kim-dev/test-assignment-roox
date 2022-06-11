@@ -1,7 +1,7 @@
 import { render, RenderOptions } from '@testing-library/react';
 import type { FC, ReactElement } from 'react';
 
-const Wrapper: FC<{ children: React.ReactNode }> = ({ children }) => {
+const Wrapper: FC = ({ children }) => {
   return <div>{children}</div>;
 };
 
