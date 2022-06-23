@@ -18,12 +18,13 @@
     "serve": "webpack serve --history-api-fallback --static-directory ./dist",
     "start": "webpack serve --hot",
     "test": "jest --watch",
-    "test:ci": "jest --ci",
+    "test:ci": "jest --ci --passWithNoTests",
     "test:coverage": "jest --coverage",
     "typecheck": "tsc",
     "update-caniuse": "npx browserslist --update-db"
   },
   "dependencies": {
+    "modern-css-reset": "1.4.0",
     "react": "16.14.0",
     "react-dom": "16.14.0"
   },

@@ -98,7 +98,7 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       title: 'Webpack react template',
-      favicon: path.join(paths.src, 'favicon.png'),
+      favicon: path.join(paths.src, 'assets', 'favicon.png'),
       template: path.join(paths.src, 'template.html'),
     }),
 
