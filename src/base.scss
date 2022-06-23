@@ -1,0 +1,43 @@
+@use 'modern-css-reset';
+@use '~/utils/abstracts.scss' as *;
+@use 'sass:math';
+
+body {
+  font-family: Roboto, sans-serif;
+  overflow-wrap: break-word;
+}
+
+h1 {
+  font-size: rem(14);
+  line-height: em(16, 14);
+}
+
+p {
+  font-size: rem(12);
+  line-height: em(14, 12);
+}
+
+a {
+  color: #4b51ef;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.muted {
+  color: #a3a3a3;
+}
+
+.srOnly {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

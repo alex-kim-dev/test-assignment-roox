@@ -1,0 +1,22 @@
+@use 'sass:math';
+
+@function rem($px) {
+  @if type-of($px) == 'number' and math.is-unitless($px) {
+    @return math.div($px, 16) * 1rem;
+  } @else {
+    @error 'The value should be a unitless number (representing px)';
+  }
+}
+
+// prettier-ignore
+@function em($dividend, $divisor) {
+  @if type-of($dividend) == 'number' and
+    math.is-unitless($dividend) and
+    type-of($divisor) == 'number' and
+    math.is-unitless($divisor)
+  {
+    @return math.div($dividend, $divisor) * 1em;
+  } @else {
+    @error 'The values should be unitless numbers (representing px)';
+  }
+}

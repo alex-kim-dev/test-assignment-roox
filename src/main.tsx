@@ -1,4 +1,4 @@
-import '~/main.scss';
+import '~/base.scss';
 
 import { StrictMode } from 'react';
 import { render } from 'react-dom';
