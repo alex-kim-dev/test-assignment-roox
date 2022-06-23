@@ -1,0 +1,23 @@
+@use 'sass:list';
+@use '~/utils/abstracts.scss' as *;
+
+.grid {
+  display: grid;
+  max-width: rem(665);
+  min-height: 100vh;
+  margin-right: auto;
+  margin-left: auto;
+  grid-template: list.slash('aside main' 1fr, rem(150) 1fr);
+}
+
+.aside {
+  padding: 36px 20px;
+  background-color: #bdbdbd;
+  grid-area: aside;
+}
+
+.main {
+  padding: 24px 48px;
+  background-color: #f8f8f8;
+  grid-area: main;
+}
