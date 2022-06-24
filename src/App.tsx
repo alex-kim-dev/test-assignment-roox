@@ -1,4 +1,4 @@
-import { MainLayout, Spinner } from './components';
+import { Button, MainLayout } from './components';
 
 export const App = () => {
   return (
@@ -8,9 +8,14 @@ export const App = () => {
         Иван Иванов {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a href='#'>Подробнее</a>
       </p>
-      <div style={{ width: '2rem', aspectRatio: '1' }}>
-        <Spinner />
-      </div>
+      <Button>Button</Button>
+      <Button active>Active</Button>
+      <Button disabled>Disabled</Button>
+      <Button loading>Loading</Button>
+      <Button disabled loading>
+        Loading disabled
+      </Button>
+      <Button variant='success'>Success</Button>
     </MainLayout>
   );
 };

@@ -24,6 +24,7 @@
     "update-caniuse": "npx browserslist --update-db"
   },
   "dependencies": {
+    "clsx": "1.1.1",
     "modern-css-reset": "1.4.0",
     "react": "16.14.0",
     "react-dom": "16.14.0"

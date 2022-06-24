@@ -1,0 +1,65 @@
+@use '~/utils/abstracts.scss' as *;
+@use 'sass:color';
+
+$c-primary: #4b51ef;
+$c-success: #52cf4f;
+$c-disabled: #afafaf;
+
+.button {
+  --bg: $c-primary;
+
+  position: relative;
+  display: inline-flex;
+  min-height: rem(24);
+  align-items: center;
+  justify-content: center;
+  padding: rem(4) rem(15);
+  border: none;
+  background-color: $c-primary;
+  border-radius: rem(5);
+  color: #fff;
+  cursor: pointer;
+  font-size: rem(12);
+  line-height: 1em;
+  transition: background-color 0.15s;
+
+  &:hover {
+    background-color: color.scale($c-primary, $lightness: 15%);
+  }
+
+  &.active,
+  &:active {
+    background-color: color.scale($c-primary, $lightness: -20%);
+  }
+
+  &:disabled {
+    background-color: $c-disabled;
+    cursor: not-allowed;
+  }
+
+  &.loading {
+    color: transparent;
+  }
+
+  &.success {
+    background-color: $c-success;
+
+    &:hover {
+      background-color: color.scale($c-success, $lightness: 15%);
+    }
+
+    &:active {
+      background-color: color.scale($c-success, $lightness: -20%);
+    }
+  }
+}
+
+.spinnerWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  width: rem(20);
+  height: rem(20);
+  transform: translate(-50%, -50%);
+}
