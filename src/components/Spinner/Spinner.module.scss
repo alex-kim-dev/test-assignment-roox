@@ -1,0 +1,22 @@
+@use '~/utils/abstracts.scss' as *;
+
+.spinner {
+  display: block;
+  width: 100%;
+  height: auto;
+  padding-top: 100%;
+  animation: scaleout 1s infinite ease-in-out;
+  background-color: #333;
+  border-radius: 50%;
+}
+
+@keyframes scaleout {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
