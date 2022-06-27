@@ -1,6 +1,7 @@
 import { Spinner } from '~/components';
 
 import { useUsers } from '../../api/getUsers';
+import { UserItem } from '../UserItem/UserItem';
 import css from './UsersList.module.scss';
 
 export const UsersList: React.FC = () => {
@@ -15,5 +16,16 @@ export const UsersList: React.FC = () => {
 
   if (error) return <p className={css.errorMsg}>{`Error: ${error.message}`}</p>;
 
-  return <pre>{JSON.stringify(users, null, 2)}</pre>;
+  return (
+    <>
+      <ul className={css.list}>
+        {users.map((user) => (
+          <UserItem key={user.id} user={user} />
+        ))}
+      </ul>
+      <p className={css.total}>
+        Found {users.length} user{users.length > 1 && 's'}
+      </p>
+    </>
+  );
 };

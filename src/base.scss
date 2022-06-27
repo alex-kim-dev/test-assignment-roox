@@ -37,6 +37,11 @@ legend {
   line-height: em(14, 12);
 }
 
+dd,
+dt {
+  display: inline;
+}
+
 .muted {
   color: #a3a3a3;
 }

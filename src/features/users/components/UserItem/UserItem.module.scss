@@ -1,0 +1,39 @@
+@use '~/utils/abstracts.scss' as *;
+
+.item {
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  font-size: rem(11);
+  line-height: em(13, 11);
+
+  &:not(:first-child) {
+    margin-top: 24px;
+  }
+}
+
+.info {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template:
+    '. link' auto
+    '. link' auto
+    '. link' auto
+    / 1fr auto;
+
+  > div:not(:first-child) {
+    margin-top: 8px;
+  }
+
+  & dt {
+    color: #a3a3a3;
+  }
+}
+
+.link {
+  align-self: end;
+  font-size: rem(12);
+  grid-area: link;
+  justify-self: end;
+  line-height: em(14, 12);
+}
