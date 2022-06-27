@@ -1,21 +1,24 @@
-import { Button, MainLayout } from './components';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+
+import { MainLayout } from '~/components';
 
 export const App = () => {
   return (
-    <MainLayout>
-      <h1>Список пользователей</h1>
-      <p>
-        Иван Иванов {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a href='#'>Подробнее</a>
-      </p>
-      <Button>Button</Button>
-      <Button active>Active</Button>
-      <Button disabled>Disabled</Button>
-      <Button loading>Loading</Button>
-      <Button disabled loading>
-        Loading disabled
-      </Button>
-      <Button variant='success'>Success</Button>
-    </MainLayout>
+    <BrowserRouter>
+      <MainLayout>
+        <Routes>
+          <Route
+            element={
+              <>
+                <h1>Users list</h1>
+                <Link to='123'>go to a user profile</Link>
+              </>
+            }
+            path='/'
+          />
+          <Route element={<h1>User Profile</h1>} path='/:userid' />
+        </Routes>
+      </MainLayout>
+    </BrowserRouter>
   );
 };
