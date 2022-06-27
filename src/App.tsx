@@ -1,7 +1,9 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import { MainLayout } from '~/components';
 import { SortingProvider } from '~/stores/sorting';
+
+import { Users } from './features/users';
 
 export const App = () => {
   return (
@@ -9,15 +11,7 @@ export const App = () => {
       <SortingProvider>
         <MainLayout>
           <Routes>
-            <Route
-              element={
-                <>
-                  <h1>Users list</h1>
-                  <Link to='123'>go to a user profile</Link>
-                </>
-              }
-              path='/'
-            />
+            <Route element={<Users />} path='/' />
             <Route element={<h1>User Profile</h1>} path='/:userid' />
           </Routes>
         </MainLayout>

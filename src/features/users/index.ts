@@ -1,1 +1,3 @@
-export { Sorting } from './components/Sorting/Sorting';
+export { Sorting } from './components';
+export * from './routes/Users';
+export * from './types';
