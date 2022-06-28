@@ -3,11 +3,15 @@ import { useEffect, useState } from 'react';
 import type { Id, User } from '../types';
 
 export const getUser = async (id: Id): Promise<User> => {
+  if (Number.isNaN(id)) throw new Error('wrong user id');
+
   const response = await fetch(
-    `https://jsonplaceholder.typicode.com/user/${id}`
+    `https://jsonplaceholder.typicode.com/users/${id}`
   );
   const { ok, status, statusText } = response;
+
   if (!ok) throw new Error(`${status} ${statusText}`);
+
   return response.json();
 };
 

@@ -3,7 +3,7 @@ import { HashRouter, Route, Routes } from 'react-router-dom';
 import { MainLayout } from '~/components';
 import { SortingProvider } from '~/stores/sorting';
 
-import { Users } from './features/users';
+import { Profile, Users } from './features/users';
 
 export const App = () => {
   return (
@@ -12,7 +12,7 @@ export const App = () => {
         <MainLayout>
           <Routes>
             <Route element={<Users />} path='/' />
-            <Route element={<h1>User Profile</h1>} path='/:userid' />
+            <Route element={<Profile />} path='/:userId' />
           </Routes>
         </MainLayout>
       </SortingProvider>
