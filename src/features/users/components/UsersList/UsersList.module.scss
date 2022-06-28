@@ -1,18 +1,5 @@
 @use '~/utils/abstracts.scss' as *;
 
-.spinnerWrapper {
-  width: rem(30);
-  margin: rem(20) auto 0;
-}
-
-.errorMsg {
-  max-width: 40ch;
-  margin-top: rem(20);
-  margin-right: auto;
-  margin-left: auto;
-  text-align: center;
-}
-
 .list {
   display: block;
   padding: 0;

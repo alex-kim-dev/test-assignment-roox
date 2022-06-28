@@ -1,4 +1,4 @@
-import { Spinner } from '~/components';
+import { ContentLayout } from '~/components';
 import { SortingOptions, useSorting } from '~/stores/sorting';
 
 import { useUsers } from '../../api/getUsers';
@@ -14,6 +14,7 @@ const select = {
 export const UsersList: React.FC = () => {
   const { users, isLoading, error } = useUsers();
   const [sortBy] = useSorting();
+  const errorMsg = error ? `Error: ${error.message}` : '';
 
   const sortedUsers =
     sortBy === SortingOptions.default
@@ -24,25 +25,18 @@ export const UsersList: React.FC = () => {
           return a.localeCompare(b);
         });
 
-  if (isLoading)
-    return (
-      <div className={css.spinnerWrapper}>
-        <Spinner />
-      </div>
-    );
-
-  if (error) return <p className={css.errorMsg}>{`Error: ${error.message}`}</p>;
-
   return (
-    <>
-      <ul className={css.list}>
-        {sortedUsers.map((user) => (
-          <UserItem key={user.id} user={user} />
-        ))}
-      </ul>
-      <p className={css.total}>
-        Found {users.length} user{users.length > 1 && 's'}
-      </p>
-    </>
+    <ContentLayout errorMsg={errorMsg} isLoading={isLoading} title='Users List'>
+      <>
+        <ul className={css.list}>
+          {sortedUsers.map((user) => (
+            <UserItem key={user.id} user={user} />
+          ))}
+        </ul>
+        <p className={css.total}>
+          Found {users.length} user{users.length > 1 && 's'}
+        </p>
+      </>
+    </ContentLayout>
   );
 };
