@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { HashRouter, Route, Routes } from 'react-router-dom';
 
 import { MainLayout } from '~/components';
 import { SortingProvider } from '~/stores/sorting';
@@ -7,7 +7,7 @@ import { Users } from './features/users';
 
 export const App = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <SortingProvider>
         <MainLayout>
           <Routes>
@@ -16,6 +16,6 @@ export const App = () => {
           </Routes>
         </MainLayout>
       </SortingProvider>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
