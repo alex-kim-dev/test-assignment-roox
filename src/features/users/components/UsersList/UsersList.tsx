@@ -1,7 +1,5 @@
-import { ContentLayout } from '~/components';
 import { SortingOptions, useSorting } from '~/stores/sorting';
 
-import { useUsers } from '../../api/getUsers';
 import type { User } from '../../types';
 import { UserItem } from '../UserItem/UserItem';
 import css from './UsersList.module.scss';
@@ -11,10 +9,12 @@ const select = {
   [SortingOptions.company]: (user: User): string => user.company.name,
 };
 
-export const UsersList: React.FC = () => {
-  const { users, isLoading, error } = useUsers();
+interface UsersListProps {
+  users: User[];
+}
+
+export const UsersList: React.FC<UsersListProps> = ({ users }) => {
   const [sortBy] = useSorting();
-  const errorMsg = error ? `Error: ${error.message}` : '';
 
   const sortedUsers =
     sortBy === SortingOptions.default
@@ -26,17 +26,15 @@ export const UsersList: React.FC = () => {
         });
 
   return (
-    <ContentLayout errorMsg={errorMsg} isLoading={isLoading} title='Users List'>
-      <>
-        <ul className={css.list}>
-          {sortedUsers.map((user) => (
-            <UserItem key={user.id} user={user} />
-          ))}
-        </ul>
-        <p className={css.total}>
-          Found {users.length} user{users.length > 1 && 's'}
-        </p>
-      </>
-    </ContentLayout>
+    <>
+      <ul className={css.list}>
+        {sortedUsers.map((user) => (
+          <UserItem key={user.id} user={user} />
+        ))}
+      </ul>
+      <p className={css.total}>
+        Found {users.length} user{users.length > 1 && 's'}
+      </p>
+    </>
   );
 };
