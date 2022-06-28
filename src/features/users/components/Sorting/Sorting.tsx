@@ -1,4 +1,4 @@
-import { Button } from '~/components';
+import { Button } from '~/components/Button/Button';
 import { SortingOptions, useSorting } from '~/stores/sorting';
 
 import css from './Sorting.module.scss';

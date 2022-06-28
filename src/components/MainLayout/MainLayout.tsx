@@ -1,4 +1,4 @@
-import { Sorting } from '~/features/users';
+import { Sorting } from '~/features/users/components/Sorting/Sorting';
 
 import css from './MainLayout.module.scss';
 
