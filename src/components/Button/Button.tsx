@@ -8,36 +8,38 @@ import css from './Button.module.scss';
 
 interface ButtonProps {
   active?: boolean;
-  as?: keyof JSX.IntrinsicElements;
   disabled?: boolean;
   loading?: boolean;
+  type?: 'button' | 'reset' | 'submit';
   variant?: 'primary' | 'success';
+  onClick?: (event: React.PointerEvent<HTMLButtonElement>) => void;
 }
 
 export const Button: React.FC<ButtonProps> = ({
   active = false,
-  as: Element = 'button',
   disabled = false,
   loading = false,
+  type = 'button',
   variant = 'primary',
+  onClick,
   children,
-  ...props
 }) => {
   return (
-    <Element
+    <button
       className={clsx(css.button, {
         [css.success]: variant === 'success',
         [css.active]: active,
         [css.loading]: loading,
       })}
       disabled={disabled}
-      {...props}>
+      type={type}
+      onClick={onClick}>
       {children}
       {loading && (
         <span className={css.spinnerWrapper}>
           <Spinner />
         </span>
       )}
-    </Element>
+    </button>
   );
 };

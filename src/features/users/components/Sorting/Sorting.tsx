@@ -20,15 +20,11 @@ export const Sorting: React.FC = () => {
     <fieldset className={css.wrapper}>
       <legend>Sorting</legend>
       {options.map((option) => (
-        <Button key={option} active={currentOption === option} as='label'>
+        <Button
+          key={option}
+          active={currentOption === option}
+          onClick={handleRadioClick(option)}>
           by {option}
-          <input
-            checked={currentOption === option}
-            className={css.radio}
-            name={option}
-            type='radio'
-            onClick={handleRadioClick(option)}
-          />
         </Button>
       ))}
     </fieldset>
