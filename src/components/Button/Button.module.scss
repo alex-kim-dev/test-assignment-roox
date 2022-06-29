@@ -6,7 +6,9 @@ $c-success: #52cf4f;
 $c-disabled: #afafaf;
 
 .button {
-  --bg: $c-primary;
+  --bg: #{$c-primary};
+  --bg-hover: #{color.scale($c-primary, $lightness: 15%)};
+  --bg-active: #{color.scale($c-primary, $lightness: -20%)};
 
   position: relative;
   display: inline-flex;
@@ -15,7 +17,7 @@ $c-disabled: #afafaf;
   justify-content: center;
   padding: rem(4) rem(15);
   border: none;
-  background-color: $c-primary;
+  background-color: var(--bg);
   border-radius: rem(5);
   color: #fff;
   cursor: pointer;
@@ -24,12 +26,12 @@ $c-disabled: #afafaf;
   transition: background-color 0.15s;
 
   &:hover {
-    background-color: color.scale($c-primary, $lightness: 15%);
+    background-color: var(--bg-hover);
   }
 
   &.active,
   &:active {
-    background-color: color.scale($c-primary, $lightness: -20%);
+    background-color: var(--bg-active);
   }
 
   &:disabled {
@@ -42,15 +44,9 @@ $c-disabled: #afafaf;
   }
 
   &.success {
-    background-color: $c-success;
-
-    &:hover {
-      background-color: color.scale($c-success, $lightness: 15%);
-    }
-
-    &:active {
-      background-color: color.scale($c-success, $lightness: -20%);
-    }
+    --bg: #{$c-success};
+    --bg-hover: #{color.scale($c-success, $lightness: 15%)};
+    --bg-active: #{color.scale($c-success, $lightness: -20%)};
   }
 }
 
