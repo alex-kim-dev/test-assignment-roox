@@ -35,6 +35,9 @@ rules:
         - '**/?(*.)+(spec|test).ts?(x)'
   import/order: off
   import/prefer-default-export: off
+  jsx-a11y/label-has-associated-control:
+    - error
+    - assert: either
   react/function-component-definition:
     - error
     - namedComponents: arrow-function

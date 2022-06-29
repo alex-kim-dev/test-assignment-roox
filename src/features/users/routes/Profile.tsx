@@ -11,10 +11,7 @@ export const Profile: React.FC = () => {
   const errorMsg = error ? `Error: ${error.message}` : '';
 
   return (
-    <ContentLayout
-      errorMsg={errorMsg}
-      isLoading={isLoading}
-      title='User Profile'>
+    <ContentLayout errorMsg={errorMsg} isLoading={isLoading}>
       {user && <UserProfile user={user} />}
     </ContentLayout>
   );

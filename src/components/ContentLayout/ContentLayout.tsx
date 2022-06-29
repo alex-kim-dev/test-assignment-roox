@@ -2,7 +2,7 @@ import { Spinner } from '../Spinner/Spinner';
 import css from './ContentLayout.module.scss';
 
 interface ContentLayoutProps {
-  title: string;
+  title?: string;
   isLoading?: boolean;
   errorMsg?: string;
 }
@@ -28,7 +28,7 @@ export const ContentLayout: React.FC<ContentLayoutProps> = ({
 
   return (
     <>
-      <h1>{title}</h1>
+      {title && <h1>{title}</h1>}
       {renderBody()}
     </>
   );
