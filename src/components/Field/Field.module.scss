@@ -1,0 +1,41 @@
+@use '~/utils/abstracts' as *;
+
+.label {
+  display: block;
+  max-width: rem(210);
+  font-size: rem(8);
+  line-height: em(9, 8);
+
+  &.fullWidth {
+    max-width: none;
+  }
+}
+
+.field {
+  display: block;
+  width: 100%;
+  padding: 4px 9px;
+  border: rem(1) solid #d8d8d8;
+  margin-top: 3px;
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: rem(10);
+  line-height: em(12, 10);
+
+  &:disabled {
+    color: rgb(0 0 0 / 30%);
+  }
+
+  &:enabled[aria-invalid='true'] {
+    border-color: #d91313;
+  }
+
+  &:focus {
+    outline-style: solid;
+  }
+
+  &.textarea {
+    min-height: rem(55);
+    resize: vertical;
+  }
+}

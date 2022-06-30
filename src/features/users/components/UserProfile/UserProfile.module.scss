@@ -8,36 +8,13 @@
   gap: 16px;
 }
 
-.form {
+.fieldset {
   padding: 20px 12px;
   border: 1px solid #f3f3f3;
   border-radius: 8px;
 
   > * + * {
     margin-top: 10px;
-  }
-}
-
-.label {
-  display: block;
-  font-size: rem(8);
-  line-height: em(9, 8);
-}
-
-.field {
-  display: block;
-  width: 100%;
-  max-width: rem(210);
-  padding: 4px 9px;
-  border: rem(1) solid #d8d8d8;
-  margin-top: 3px;
-  background-color: transparent;
-  border-radius: 5px;
-  font-size: rem(10);
-  line-height: em(12, 10);
-
-  &:disabled {
-    color: rgb(0 0 0 / 30%);
   }
 }
 

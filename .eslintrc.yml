@@ -49,6 +49,9 @@ rules:
       callbacksLast: true
       shorthandLast: true
       reservedFirst: true
+  react/require-default-props:
+    - error
+    - functions: defaultArguments
   react/prop-types: off
   simple-import-sort/exports: warn
   simple-import-sort/imports: warn

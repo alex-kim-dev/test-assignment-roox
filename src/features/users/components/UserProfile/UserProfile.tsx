@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Button } from '~/components';
+import { Button, Field } from '~/components';
 
 import type { User } from '../../types';
 import css from './UserProfile.module.scss';
@@ -11,17 +11,12 @@ interface UserProfileProps {
 
 export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const [isReadonly, setReadonly] = useState(true);
-  const [name, setName] = useState(user.name);
 
   const handleEditClick = () => {
     setReadonly((prev) => !prev);
   };
 
-  const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setName(event.currentTarget.value);
-  };
-
-  const handleFormSubmit = (event: React.FormEvent) => {
+  const handleFormSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
   };
 
@@ -33,28 +28,30 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
           Edit
         </Button>
       </header>
-      <form className={css.form} id='user-profile' onSubmit={handleFormSubmit}>
-        <fieldset disabled={isReadonly}>
-          <label className={css.label}>
-            Name
-            <input
-              className={css.field}
-              name='name'
-              type='text'
-              value={name}
-              onChange={handleInput}
-            />
-          </label>
+      <form onSubmit={handleFormSubmit}>
+        <fieldset className={css.fieldset} disabled={isReadonly}>
+          <Field initValue={user.name} label='Name' type='text' />
+          <Field initValue={user.username} label='User name' type='text' />
+          <Field initValue={user.email} label='Email' type='email' />
+          <Field initValue={user.address.street} label='Street' type='text' />
+          <Field initValue={user.address.city} label='City' type='text' />
+          <Field
+            initValue={user.address.zipcode}
+            label='Zip code'
+            type='text'
+          />
+          <Field initValue={user.phone} label='Phone' type='tel' />
+          <Field initValue={user.website} label='Website' type='text' />
+          <Field as='textarea' label='Comment' />
         </fieldset>
+        <Button
+          className={css.submit}
+          disabled={isReadonly}
+          type='submit'
+          variant='success'>
+          Send
+        </Button>
       </form>
-      <Button
-        className={css.submit}
-        disabled={isReadonly}
-        form='user-profile'
-        type='submit'
-        variant='success'>
-        Send
-      </Button>
     </>
   );
 };
