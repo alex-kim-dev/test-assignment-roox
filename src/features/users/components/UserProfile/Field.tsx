@@ -1,11 +1,13 @@
 /* eslint-disable react/require-default-props */
 
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { toSnakeCase } from '~/utils';
 
 import css from './Field.module.scss';
+import { useForm } from './formContext';
+import { isFieldValid } from './validate';
 
 interface FieldOwnProps<E extends React.ElementType = React.ElementType> {
   as?: E;
@@ -28,21 +30,25 @@ export const Field = <E extends React.ElementType = typeof defaultElement>({
   const [value, setValue] = useState<string>(initValue);
   const [error, setError] = useState(false);
   const [isTouched, setTouched] = useState(false);
+  const { isFormTouched } = useForm();
 
   const Component = as || defaultElement;
+  const name = toSnakeCase(label);
+
+  useEffect(() => {
+    if (isFormTouched) setError(!isFieldValid(name, value));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isFormTouched]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const current = event.currentTarget.value;
-    setValue(current);
-
-    if (isTouched) {
-      setError(!/\w/.test(current));
-    }
+    const currentValue = event.currentTarget.value;
+    setValue(currentValue);
+    if (isTouched || isFormTouched) setError(!isFieldValid(name, currentValue));
   };
 
-  const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+  const handleBlur = () => {
     setTouched(true);
-    setError(!/\w/.test(event.currentTarget.value));
+    setError(!isFieldValid(name, value));
   };
 
   return (
@@ -56,7 +62,7 @@ export const Field = <E extends React.ElementType = typeof defaultElement>({
           Component === 'textarea' && css.textarea,
           className
         )}
-        name={toSnakeCase(label)}
+        name={name}
         value={value}
         onBlur={handleBlur}
         onChange={handleChange}
