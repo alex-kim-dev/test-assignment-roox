@@ -3,10 +3,10 @@ import { useMemo, useState } from 'react';
 import { Button } from '~/components';
 
 import type { User } from '../../types';
-import { Field } from './Field';
-import { FormProvider } from './formContext';
+import { UserProfileProvider } from '../../utils/userProfileContext';
+import { isFormValid } from '../../utils/userProfileValidation';
+import { Field } from '../Field/Field';
 import css from './UserProfile.module.scss';
-import { isFormValid } from './validate';
 
 interface UserProfileProps {
   user: User;
@@ -49,7 +49,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
       </header>
       <form onSubmit={handleFormSubmit}>
         <fieldset className={css.fieldset} disabled={isReadonly}>
-          <FormProvider value={context}>
+          <UserProfileProvider value={context}>
             <Field initValue={user.name} label='Name' type='text' />
             <Field initValue={user.username} label='User name' type='text' />
             <Field initValue={user.email} label='Email' type='email' />
@@ -63,7 +63,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
             <Field initValue={user.phone} label='Phone' type='tel' />
             <Field initValue={user.website} label='Website' type='text' />
             <Field as='textarea' label='Comment' />
-          </FormProvider>
+          </UserProfileProvider>
         </fieldset>
         <Button
           className={css.submit}

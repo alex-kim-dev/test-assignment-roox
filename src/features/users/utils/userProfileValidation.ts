@@ -2,7 +2,7 @@ import { object, reach, string } from 'yup';
 
 const schema = object({
   name: string().trim().max(64).required(),
-  'user-name': string()
+  username: string()
     .trim()
     .max(32)
     .matches(/^[a-z._]+$/i)
@@ -10,7 +10,7 @@ const schema = object({
   email: string().trim().email().required(),
   street: string().trim().max(64).required(),
   city: string().trim().max(64).required(),
-  'zip-code': string()
+  zipcode: string()
     .trim()
     .matches(/^\d{5}(?:-\d{4})?$/)
     .required(),
@@ -23,7 +23,7 @@ const schema = object({
   comment: string().trim(),
 });
 
-export const isFormValid = (data: any) => schema.isValidSync(data);
+export const isFormValid = (shape: object) => schema.isValidSync(shape);
 
-export const isFieldValid = (field: string, data: string) =>
-  reach(schema, field).isValidSync(data);
+export const isFieldValid = (name: string, value: string) =>
+  reach(schema, name).isValidSync(value);

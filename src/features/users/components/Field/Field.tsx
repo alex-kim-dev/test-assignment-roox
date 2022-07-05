@@ -1,13 +1,9 @@
-/* eslint-disable react/require-default-props */
-
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
-import { toSnakeCase } from '~/utils';
-
+import { useUserProfile } from '../../hooks';
+import { isFieldValid } from '../../utils/userProfileValidation';
 import css from './Field.module.scss';
-import { useForm } from './formContext';
-import { isFieldValid } from './validate';
 
 interface FieldOwnProps<E extends React.ElementType = React.ElementType> {
   as?: E;
@@ -21,34 +17,39 @@ type FieldProps<E extends React.ElementType> = FieldOwnProps<E> &
 const defaultElement = 'input';
 
 export const Field = <E extends React.ElementType = typeof defaultElement>({
+  // eslint-disable-next-line react/require-default-props
   as,
   initValue = '',
   label,
   className,
   ...props
 }: FieldProps<E>) => {
-  const [value, setValue] = useState<string>(initValue);
+  const [value, setValue] = useState(initValue);
   const [error, setError] = useState(false);
   const [isTouched, setTouched] = useState(false);
-  const { isFormTouched } = useForm();
+  const { isFormTouched } = useUserProfile();
 
   const Component = as || defaultElement;
-  const name = toSnakeCase(label);
+  const name = label.replaceAll(' ', '').toLowerCase();
+
+  const validate = useCallback(
+    (val: string) => setError(!isFieldValid(name, val)),
+    [name]
+  );
 
   useEffect(() => {
-    if (isFormTouched) setError(!isFieldValid(name, value));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFormTouched]);
+    if (isFormTouched) validate(value);
+  }, [isFormTouched, validate, value]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const currentValue = event.currentTarget.value;
     setValue(currentValue);
-    if (isTouched || isFormTouched) setError(!isFieldValid(name, currentValue));
+    if (isTouched || isFormTouched) validate(currentValue);
   };
 
   const handleBlur = () => {
     setTouched(true);
-    setError(!isFieldValid(name, value));
+    validate(value);
   };
 
   return (
