@@ -2,7 +2,8 @@ import { useMemo, useState } from 'react';
 
 import { Button } from '~/components';
 
-import type { User } from '../../types';
+import { useUpdateUserProfile } from '../../api/updateUserProfile';
+import type { User, UserProfileData } from '../../types';
 import { UserProfileProvider } from '../../utils/userProfileContext';
 import { isFormValid } from '../../utils/userProfileValidation';
 import { Field } from '../Field/Field';
@@ -14,8 +15,10 @@ interface UserProfileProps {
 
 export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   const [isReadonly, setReadonly] = useState(true);
-  const [isSubmitting, setSubmitting] = useState(false);
   const [isFormTouched, setFormTouched] = useState(false);
+  const { updateUserProfile, isLoading: isSubmitting } = useUpdateUserProfile(
+    user.id
+  );
 
   const context = useMemo(() => ({ isFormTouched }), [isFormTouched]);
 
@@ -27,16 +30,14 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
     event.preventDefault();
     if (isSubmitting) return;
 
-    setSubmitting(true);
-
     const formData = new FormData(event.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+    const data = Object.fromEntries(
+      formData.entries()
+    ) as unknown as UserProfileData;
     const isValid = isFormValid(data);
 
+    if (isValid) updateUserProfile(data);
     setFormTouched(true);
-
-    if (isValid) console.info('Submitting:', JSON.stringify(data, null, 2));
-    setSubmitting(false);
   };
 
   return (

@@ -29,3 +29,9 @@ export interface Company {
   catchPhrase: string;
   bs: string;
 }
+
+export interface Comment {
+  comment: string;
+}
+
+export type UserProfileData = User & Address & Comment;

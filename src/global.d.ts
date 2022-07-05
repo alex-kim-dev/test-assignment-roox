@@ -19,3 +19,9 @@ declare module '*.svg?inline' {
   const svg = 'SvgInline';
   export default svg;
 }
+
+declare type DeepPartial<T> = T extends object
+  ? {
+      [P in keyof T]?: DeepPartial<T[P]>;
+    }
+  : T;
